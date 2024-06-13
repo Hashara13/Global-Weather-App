@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-main">
+    <div class="container text-center">
+      <h1 class="mt-5">LIVE WEATHER</h1>
+      <form action="/" method="post" class="mt-4">
+        <div class="row mb-3">
+          <div class="col-12 col-md-4 mb-3 mb-md-0">
+            <input
+              class="form-control"
+              type="text"
+              id="cityName"
+              name="cityName"
+              placeholder="City"
+              required
+            />
+          </div>
+          <div class="col-12 col-md-4 mb-3 mb-md-0">
+            <input
+              class="form-control"
+              type="text"
+              id="stateName"
+              name="stateName"
+              placeholder="State"
+            />
+          </div>
+          <div class="col-12 col-md-4">
+            <input
+              class="form-control"
+              type="text"
+              id="countryName"
+              name="countryName"
+              placeholder="Country"
+              required
+            />
+          </div>
+        </div>
+        <div class="d-grid gap-2 col-6 col-md-4 mx-auto">
+          <button type="submit" class="btn btn-primary">Check</button>
+        </div>
+      </form>
+      {% if data %}
+      <div class="weather-card mx-auto mt-4">
+        <h3>
+          Weather in {{ request.form.cityName }}, {{ request.form.countryName }}
+        </h3>
+        <img
+          src="https://openweathermap.org/img/wn/{{ data.icon }}@2x.png"
+          alt="Weather Icon"
+          class="weather-icon"
+        />
+        <p class="mt-3">
+          <strong>{{ data.main }}</strong>: {{ data.description }}
+        </p>
+        <p class="temperature">{{ data.temperature }}°C</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <footer>
+      <p>
+        &copy; 2024 Global Weather App. All rights reserved.<br />Hashara
+        Nethmin |
+        <a
+          href="https://github.com/Hashara13"
+          target="_blank"
+          class="github-link"
+          ><img
+            src="path-to-your-github-icon"
+            alt="GitHub"
+            style="height: 30px; width: auto"
+        /></a>
+      </p>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

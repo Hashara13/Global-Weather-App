@@ -11,7 +11,7 @@ class WeatherData:
     main: str
     description: str
     icon: str
-    temperature: float
+    temperature: int
 
 def get_lat_lon(city_name, state_code, country_code, API_key):
     resp = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={city_name},{state_code},{country_code}&appid={API_key}')
@@ -26,12 +26,12 @@ def get_current_weather(lat, lon, API_key):
         main=data_json.get('weather')[0].get('main'),
         description=data_json.get('weather')[0].get('description'),
         icon=data_json.get('weather')[0].get('icon'),
-        temperature=data_json.get('main').get('temp')
+        temperature=int(data_json.get('main').get('temp'))
     )
     return data
 
 def main(city_name,state_name,country_name):
-      lat, lon = get_lat_lon('Toronto', 'ON', 'Canada', api_key)
+      lat, lon = get_lat_lon(city_name,state_name,country_name, api_key)
       weather_data=get_current_weather(lat, lon, api_key)
       return weather_data
 
