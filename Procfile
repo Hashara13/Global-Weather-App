@@ -1,0 +1,1 @@
+web: gunicorn Global Weather App:app
